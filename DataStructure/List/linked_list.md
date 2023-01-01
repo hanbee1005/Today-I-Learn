@@ -15,3 +15,4 @@
 	+ 다만 탐색시에는 문제가 되는데 각 데이터에 한번에 접근할 수가 없어 항상 순차적으로 도달해야 한다. 이 때문에 데이터 검색에 쥐약이다. 정렬은 O(nlogn)시간에 가능하다. 이 단점을 해결한 것이 위에서 여러 번 언급한 그 B+tree.
 
 ## 연관 문제
+- [leetcode 141. Linked List Cycle](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/LinkedListCycle_141.java)
