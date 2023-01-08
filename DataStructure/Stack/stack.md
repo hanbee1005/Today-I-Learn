@@ -18,6 +18,8 @@
 ### 종류
 - Ascending stack VS Descending stack
 - Empty stack VS Full stack
+	+ Empty stack은 스택 포인터가 마지막 빈 slot을 가리키는 것이고
+	+ Full stack은 스택 포인터가 마지막 데이터 아이템을 가리키는 것입니다.
 
 ### 연관 문제
 - [leetcode 20. Valid Parentheses]()
