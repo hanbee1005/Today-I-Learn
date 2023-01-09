@@ -22,5 +22,5 @@
 	+ Full stack은 스택 포인터가 마지막 데이터 아이템을 가리키는 것입니다.
 
 ### 연관 문제
-- [leetcode 20. Valid Parentheses]()
+- [leetcode 20. Valid Parentheses](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/ValidParentheses_20.java)
 - [leetcode 206. Reverse Linked List]()
