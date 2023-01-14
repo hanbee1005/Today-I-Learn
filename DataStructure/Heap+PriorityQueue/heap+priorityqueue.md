@@ -37,4 +37,4 @@
 	+ 데이터를 추가하는 push() 연산이 존재하게 됩니다.
 
 ### 연관 문제
-- [leetcode Num. TITLE](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/XXX.java)
+- [703. Kth Largest Element in a Stream](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/KthLargestElementInAStream_703.java)
