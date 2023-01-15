@@ -38,3 +38,4 @@
 
 ### 연관 문제
 - [703. Kth Largest Element in a Stream](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/KthLargestElementInAStream_703.java)
+- [347. Top K Frequent Elements](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202301/TopKFrequentElements_347.java)
