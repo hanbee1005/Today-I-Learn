@@ -10,7 +10,7 @@
 	|   Iterator type  |    Fail fast iterator   |       Fail safe iterator       |
 	|  보조 해시 사용  | O (해시 충돌이 덜 발생) |                X               |
 	|   중복 키 처리   | 뒤에 들어온 값으로 덮어쓰기 | 같은 키에 대해서는 처음 값을 유지  |
-- 원리
+- 원리                          
 	<img src="./images/hashmap.png" alt="hashmap" width="500"/>
 	+ 자바에서 int hashCode()를 이용해서 배열에 값을 넣게 되는데 int 32비트 정수형으로 모든 해시 값을 담기에는 부족하기 때문에 ```int index = X.hashCode() % M;``` 과 같은 형태를 사용합니다.
 	+ HashMap 초기 용량은 16이고 로드팩터 0.75로 75%가 차면 용량을 2배로 늘리는 작업이 일어납니다. 따라서 용량이 크게 필요한 경우에는 미리 초기 용량을 정하해주는 것이 좋습니다.
