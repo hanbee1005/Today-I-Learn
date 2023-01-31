@@ -14,10 +14,10 @@
 		- 모든 노드가 다른 모든 노드들과 edge로 연결되어 있으면 completed
 - BFS(Breadth First Search)
 	+ 최대한 넓게 이동한 다음 더 이상 갈 수 없을 때 아래로 이동
-	<img src="./images/bfs.png" alt="bfs" width="500"/>
+	<img src="./images/bfs.gif" alt="bfs" width="500"/>
 - DFS(Depth First Search)
 	+ 최대한 깊게 이동한 다음 더 이상 갈 수 없을 때 옆으로 이동
-	<img src="./images/dfs.png" alt="dfs" width="500"/>
+	<img src="./images/dfs.gif" alt="dfs" width="500"/>
 
 ### 참고
 - https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
