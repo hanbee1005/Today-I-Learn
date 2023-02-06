@@ -149,5 +149,5 @@ N은 노드, E는 간선일 때
 - https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
 
 ### 연관 문제
-- [104. Maximum Depth of Binary Tree](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202302/MaximumDepthOfBinaryTree_104.java)
-- [111. Minimum Depth of Binary Tree](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202302/MinimumDepthOfBinaryTree_111.java)
+- [200. Number of Islands](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202302/NumberOfIslands_200.java)
+
