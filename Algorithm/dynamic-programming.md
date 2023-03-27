@@ -7,3 +7,4 @@
 - [121. Best Time to Buy and Sell Stock](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/BestTimeToBuyAndSellStock_121.java)
 - [300. Longest Increasing Subsequence](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/LongestIncreasingSubsequence_300.java)
 - [53. Maximum Subarray](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/MaximumSubarray_53.java)
+- [62. Unique Paths](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/UniquePaths_62.java)
