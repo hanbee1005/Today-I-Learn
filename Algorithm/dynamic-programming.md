@@ -12,3 +12,4 @@
 - [198. House Robber](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/HouseRobber_198.java)
 - [213. House Robber II](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/HouseRobberII_213.java)
 - [122. Best Time to Buy and Sell Stock II](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/BestTimeToBuyAndSellStockII_122.java)
+- [139. Word Break](https://github.com/hanbee1005/AlgorithmStudy/blob/master/Leetcode/202303/WordBreak_139.java)
