@@ -29,7 +29,7 @@
 
 ## 시간 복잡도
 | 연산 | ArrayList | LinkedList |
-|---|:---:|---:|
+|---|:---:|:---:|
 | 첫번째 위치에 insert / remove | O(N) | O(1) |
 | 마지막 위치에 insert / remove | O(1) / O(N) → 공간이 부족해 배열 복제가 일어나는 경우 | O(1) |
 | 중간에 insert / remove | O(N) | O(N) / search_time + O(1) |
