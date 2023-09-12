@@ -6,6 +6,7 @@
 
 ## DataStructure
 - List
+  + [ArrayList 와 LinkedList](https://github.com/hanbee1005/Today-I-Learn/blob/main/DataStructure/List/array_list_vs_linked_list.md)
   + [Linked List](https://github.com/hanbee1005/Today-I-Learn/blob/main/DataStructure/List/linked_list.md)
 - Stack
   + [Stack](https://github.com/hanbee1005/Today-I-Learn/blob/main/DataStructure/Stack/stack.md)
