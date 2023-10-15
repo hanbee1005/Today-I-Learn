@@ -1,6 +1,7 @@
 # Exception Handler Sample
 
 ## @RestControllerAdvice 와 @ExceptionHandler
+- [블로그 정리](https://developerbee.tistory.com/254)
 
 ## 404 에러 처리
 - 기본적으로 404 에러 발생 시 응답 데이터는 다음과 같습니다.
