@@ -34,4 +34,4 @@ Kafka란 파이프라인, 스트리밍 분석, 데이터 통합 및 미션 크�
 consumer는 consumer group에 속하게 됩니다. 한개의 파티션은 consumer group 내 하나의 consumer에게만 연결이 됩니다. 따라서 consumer group 내 consumer 들은 동일한 토픽을 구독하고 있는 것이 일반적이고 하나의 토픽에 대해 하나의 consumer group에서 구독하는 consumer의 개수는 토픽의 파티션 개수와 맞추는 것이 좋습니다.
 
 ## 정리
-- [개인 블로그글](https://developerbee.tistory.com/259)
+- [개인 블로그글](https://developerbee.tistory.com/259)  
