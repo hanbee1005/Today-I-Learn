@@ -55,3 +55,7 @@
   
 ## Spring
 - [Spring](https://github.com/hanbee1005/Today-I-Learn/blob/main/Spring/README.md)
+
+## 기타
+### Kafka
+- [kafka 구조 및 용어](https://github.com/hanbee1005/Today-I-Learn/blob/main/Kafka/Kafka%20%EA%B0%9C%EB%85%90.md)
