@@ -5,7 +5,10 @@
 
 ## Part 1. Java
 ### 변수
+- Primitive Type / Reference Type
 ### 메모리 구조
+- 스택 / 큐
+- static
 ### 클래스
 ### 객체지향
 
