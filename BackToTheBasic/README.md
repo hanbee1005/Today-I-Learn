@@ -30,7 +30,9 @@
 
 ## Part 2. Spring Boot
 ### 빈(Bean)
+- 라이프사이클(Life Cycle)
 
 ### DI(Dependency Injection)
 
 ### AOP
+
