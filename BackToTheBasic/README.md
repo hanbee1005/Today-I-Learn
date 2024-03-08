@@ -65,6 +65,8 @@
 - 캡슐화
   + 속성과 기능이 마치 하나의 캡슐에 쌓여 있는 것처럼 묶여져서 외부로 제공
   + 코드 가독성이 높아지고 변경에도 용이
+  + 접근 제어자
+    - 
 - SOLID
   + SRP(Single Responsibility Principle: 단일 책임 원칙)
   + OCP(Open Close Principle: 개방 폐쇄 원칙)
