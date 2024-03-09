@@ -66,7 +66,12 @@
   + 속성과 기능이 마치 하나의 캡슐에 쌓여 있는 것처럼 묶여져서 외부로 제공
   + 코드 가독성이 높아지고 변경에도 용이
   + 접근 제어자
-    - 
+    - private: 모든 외부 호출을 막음
+    - default(package-private): 같은 패키지 안에서 호출은 허용 
+    - protected: 같은 패키지 안에 있거나 다른 패키지라도 상속 관계 호출 허용
+    - public: 모든 외부 호출 허용
+  + 데이터(속성)은 숨겨라 -> 메서드를 통해 접근
+  + 메서드를 숨겨라 -> 꼭 필요한 메서드만 제공
 - SOLID
   + SRP(Single Responsibility Principle: 단일 책임 원칙)
   + OCP(Open Close Principle: 개방 폐쇄 원칙)
