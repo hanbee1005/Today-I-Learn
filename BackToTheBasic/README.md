@@ -153,6 +153,17 @@
     - 특정 클라이언트를 위한 인터페이스 여러개가 범위 인터페이스보다 나음
   + DIP(Dependency Inversion Principle: 의존성 역전의 원칙)
     - 추상화에 의존하고 구체화에 의존하면 안된다는 것으로 역할에 의존하고 구현에 의존하지 말아야 한다는 것
+   
+### 버전 별 참고
+- Java 8
+- record
+  + Java 14 버전에 나와 17에 정식으로 채택
+  + request,response 등 한번 생성되면 변경이 없이 데이터만 전달하는 경우 기본적으로 작성해야 하는 코드들을 줄일 수 있도록 개발된 자료 구조
+  + 모든 필드가 private final 로 되어 있고
+- toList()
+  + Java 8 때 collect(Collectors.toList()) 사용이 가능했지만 반환 리스트가 가변적이라 데이터를 더 추가할 수 있었고 NULL 값을 넣을 수 있도록 허용
+  + Java 10 때 Collectors.toUnmodifiableList() 가 나왔고 반환 리스트가 불변이지만 NULL을 허용하지 않아 NULL 이 들어간 경우 NPE 발생
+  + Java 16 때 Stream.toList() 가 나왔고 이는 반환 리스트가 불변이고 NULL을 허용
 
 ### 참고
 - [김영한의 실전 자바 - 기본편](https://www.inflearn.com/course/%EA%B9%80%EC%98%81%ED%95%9C%EC%9D%98-%EC%8B%A4%EC%A0%84-%EC%9E%90%EB%B0%94-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard)
