@@ -4,7 +4,7 @@
 - 기간(2개월): 2024-05 ~ 2024-07
 
 ## Part 1. Java
-- [java-basic.md]()
+- [java-basic.md](https://github.com/hanbee1005/Today-I-Learn/blob/main/BackToTheBasic/java-basic.md)
 
 ## Part 2. Spring Boot
 ### Spring Boot 의 특징
