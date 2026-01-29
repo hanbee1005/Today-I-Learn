@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Region API Chain Tool</title>
+    <title>Multi-Region API Chain Tool (with Auth)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .loading-spinner {
@@ -31,12 +31,12 @@
         <!-- 헤더 영역 -->
         <div class="bg-slate-900 p-8 text-white">
             <h1 class="text-3xl font-extrabold mb-2 tracking-tight">API 연쇄 호출 시스템</h1>
-            <p class="text-slate-400 text-sm font-medium uppercase tracking-wider">환경/권역/브랜드별 맞춤형 서버 요청 도구</p>
+            <p class="text-slate-400 text-sm font-medium uppercase tracking-wider">환경/권역/브랜드별 자동 인증 및 서버 요청 도구</p>
         </div>
 
         <!-- 설정 영역 -->
         <div class="p-6 bg-slate-100 border-b border-slate-200">
-            <h2 class="text-xs font-bold text-slate-500 uppercase mb-4 tracking-widest">Server Configurations</h2>
+            <h2 class="text-xs font-bold text-slate-500 uppercase mb-4 tracking-widest">Server Configurations & Security</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- 환경 -->
                 <div>
@@ -81,14 +81,16 @@
                 <div class="flex items-end">
                     <button id="executeBtn" 
                         class="w-full md:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
-                        API 호출 시작
+                        인증 후 호출 시작
                     </button>
                 </div>
             </div>
 
             <!-- 현재 타겟 정보 정보 -->
-            <div id="targetInfo" class="mb-6 px-4 py-2 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-700 font-mono">
-                Target Server: <span id="displayUrl" class="font-bold">계산 중...</span>
+            <div id="targetInfo" class="mb-6 px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-[11px] font-mono text-slate-300 leading-relaxed">
+                <div><span class="text-blue-400">Target Server:</span> <span id="displayUrl" class="text-white">...</span></div>
+                <div><span class="text-blue-400">Header serverKey:</span> <span id="displayKey" class="text-white">...</span></div>
+                <div><span class="text-blue-400">Header Auth:</span> <span id="displayAuth" class="text-slate-500">Basic *********</span></div>
             </div>
 
             <!-- 결과 대시보드 -->
@@ -129,36 +131,59 @@
         const envSelect = document.getElementById('envSelect');
         const regionSelect = document.getElementById('regionSelect');
         const brandSelect = document.getElementById('brandSelect');
+        
         const displayUrl = document.getElementById('displayUrl');
+        const displayKey = document.getElementById('displayKey');
+        const displayAuth = document.getElementById('displayAuth');
+        
         const emailInput = document.getElementById('emailInput');
         const executeBtn = document.getElementById('executeBtn');
         const messageBox = document.getElementById('messageBox');
 
         /**
-         * 선택된 환경/권역/브랜드에 따른 베이스 URL 생성 함수
-         * 실제 서비스 구조에 맞게 이 부분을 수정하세요.
+         * 환경/권역/브랜드별 고정 헤더 및 서버 정보 매핑
+         * 실제 보안 정책에 따라 값을 수정하세요.
          */
-        function constructBaseUrl() {
-            const env = envSelect.value.toLowerCase();
-            const region = regionSelect.value.toLowerCase();
-            const brand = brandSelect.value.toLowerCase();
+        function getServerConfig() {
+            const env = envSelect.value;
+            const region = regionSelect.value;
+            const brand = brandSelect.value;
+            
+            // 유니크 키 생성 (예: STG-KR-A)
+            const configKey = `${env}-${region}-${brand}`;
+            
+            // 서버별 고정 데이터 (Mock)
+            // 실제 환경에서는 이 객체에 실제 serverKey와 인증 정보를 매핑합니다.
+            const configStorage = {
+                'STG-KR-A': { sKey: 'SK_STG_KR_A_9921', user: 'admin_kr', pass: 'stg_pass_1' },
+                'STG-KR-B': { sKey: 'SK_STG_KR_B_8832', user: 'user_kr_b', pass: 'stg_pass_2' },
+                'PRD-KR-A': { sKey: 'SK_PRD_KR_A_1102', user: 'prd_oper_a', pass: 'prd_secure_a' },
+                'PRD-EU-C': { sKey: 'SK_PRD_EU_C_7741', user: 'eu_manager', pass: 'eu_secret_c' },
+                // ... 필요한 모든 조합을 추가
+            };
 
-            // 예시 패턴: https://{brand}-{region}-{env}.api.example.com
-            // 테스트를 위해 여기서는 placeholder API를 그대로 반환하거나 콘솔에만 출력하도록 설정할 수 있습니다.
-            // 실제 API가 구현되면 아래 return 주석을 해제하고 사용하세요.
+            const data = configStorage[configKey] || { sKey: 'SK_DEFAULT_0000', user: 'guest', pass: 'guest' };
+            const baseUrl = `https://${brand.toLowerCase()}.api-${region.toLowerCase()}.${env.toLowerCase()}.internal`;
             
-            // return `https://${brand}-${region}-${env}.api.yourdomain.com`;
-            
-            // 현재는 시각적 확인을 위해 구조만 보여줍니다.
-            return `https://${brand}.api-${region}.${env}.internal`;
+            // Basic Auth 헤더 생성 (Base64 인코딩)
+            const authHeader = 'Basic ' + btoa(`${data.user}:${data.pass}`);
+
+            return {
+                url: baseUrl,
+                serverKey: data.sKey,
+                authorization: authHeader
+            };
         }
 
-        function updateDisplayUrl() {
-            displayUrl.textContent = constructBaseUrl();
+        function updateDisplayInfo() {
+            const config = getServerConfig();
+            displayUrl.textContent = config.url;
+            displayKey.textContent = config.serverKey;
+            displayAuth.textContent = `Basic ${config.authorization.split(' ')[1].substring(0, 8)}... (Encoded)`;
         }
 
-        [envSelect, regionSelect, brandSelect].forEach(el => el.addEventListener('change', updateDisplayUrl));
-        updateDisplayUrl();
+        [envSelect, regionSelect, brandSelect].forEach(el => el.addEventListener('change', updateDisplayInfo));
+        updateDisplayInfo();
 
         function updateUI(stepId, status, content = '') {
             const stepEl = document.getElementById(stepId);
@@ -192,7 +217,14 @@
                 return;
             }
 
-            const targetBaseUrl = constructBaseUrl();
+            const config = getServerConfig();
+            
+            // 공통 헤더 설정
+            const customHeaders = {
+                'Content-Type': 'application/json',
+                'serverKey': config.serverKey,
+                'Authorization': config.authorization
+            };
             
             // UI 초기화
             messageBox.classList.add('hidden');
@@ -205,14 +237,13 @@
             });
             
             executeBtn.disabled = true;
-            executeBtn.textContent = "Processing...";
+            executeBtn.textContent = "Authenticating...";
 
             try {
                 // --- STEP 1: Email로 ID 찾기 ---
                 updateUI('step1', 'loading');
                 
-                // 실제 환경에서는 ${targetBaseUrl}/v1/users?email=${email} 형태가 될 것입니다.
-                // 여기서는 동작 확인을 위해 공용 테스트 API를 사용합니다.
+                // 실제 호출 시: await fetch(`${config.url}/users?email=${email}`, { headers: customHeaders });
                 const response1 = await fetch(`https://jsonplaceholder.typicode.com/users?email=${email}`);
                 if (!response1.ok) throw new Error(`API 1 호출 실패: ${response1.status}`);
                 
@@ -221,28 +252,29 @@
 
                 const foundId = data1[0].id;
                 updateUI('step1', 'success', {
-                    target_server: targetBaseUrl,
+                    request_headers: {
+                        serverKey: customHeaders.serverKey,
+                        Authorization: "Basic ****** (Hidden)"
+                    },
                     extracted_id: foundId,
-                    user_name: data1[0].name,
-                    raw_data: data1[0]
+                    user_name: data1[0].name
                 });
 
                 // --- STEP 2: 추출한 ID로 상세 데이터 호출 ---
                 updateUI('step2', 'loading');
                 
-                // 실제 환경: ${targetBaseUrl}/v1/posts?userId=${foundId}
+                // 실제 호출 시: await fetch(`${config.url}/posts?userId=${foundId}`, { headers: customHeaders });
                 const response2 = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${foundId}`);
                 if (!response2.ok) throw new Error(`API 2 호출 실패: ${response2.status}`);
                 
                 const data2 = await response2.json();
                 updateUI('step2', 'success', {
-                    target_server: targetBaseUrl,
-                    count: data2.length,
-                    latest_post: data2[0],
-                    all_posts: data2
+                    request_url: `${config.url}/posts?userId=${foundId}`,
+                    item_count: data2.length,
+                    posts: data2.slice(0, 2) // 상위 2개만 샘플 출력
                 });
 
-                messageBox.textContent = "전체 프로세스가 성공적으로 완료되었습니다!";
+                messageBox.textContent = "인증 및 연쇄 호출이 성공적으로 완료되었습니다!";
                 messageBox.className = "mt-8 p-4 rounded-xl text-center text-sm font-bold bg-green-50 text-green-700 border border-green-200 block animate-bounce";
 
             } catch (error) {
@@ -250,11 +282,11 @@
                 const currentStep = document.getElementById('step1Status').innerHTML.includes('spinner') ? 'step1' : 'step2';
                 updateUI(currentStep, 'error', error.message);
                 
-                messageBox.textContent = `오류 발생: ${error.message}`;
+                messageBox.textContent = `작업 실패: ${error.message}`;
                 messageBox.className = "mt-8 p-4 rounded-xl text-center text-sm font-bold bg-red-50 text-red-700 border border-red-200 block";
             } finally {
                 executeBtn.disabled = false;
-                executeBtn.textContent = "API 호출 시작";
+                executeBtn.textContent = "인증 후 호출 시작";
             }
         }
 
